@@ -6,16 +6,14 @@
 
 body {
   font-family: 'montserrat', sans-serif;
-  background-image: url('My\ Backgroud.jpg');
-  background-size: cover;
-  background-position: top center;
+  background: url('My Backgroud.jpg') top center / cover no-repeat;
 }
 
 .app-wrap {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 
 header {
@@ -29,20 +27,23 @@ header input {
   width: 100%;
   max-width: 280px;
   padding: 10px 15px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
   outline: none;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 0px 16px 0px 16px;
-  border-bottom: 3px solid gray;
-
-  color: #313131;
+  background: transparent; /* Transparent background */
+  border-radius: 0 16px 0 16px;
+  color: #fff; /* White text color */
   font-size: 20px;
   font-weight: 300;
-  transition: 0.2s ease-out;
+  transition: 0.2s;
+}
+
+header input::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* White placeholder with slight transparency */
+  opacity: 1; /* Ensure full opacity across browsers */
 }
 
 header input:focus {
-  background-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.2); /* Slightly change background on focus */
 }
 
 main {
@@ -54,8 +55,14 @@ main {
   text-align: center;
 }
 
-.location .city {
+.location .city,
+.current .weather,
+.current .hi-low {
   color: #fff;
+  text-shadow: 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.location .city {
   font-size: 32px;
   font-weight: 500;
   margin-bottom: 5px;
@@ -70,7 +77,7 @@ main {
   color: #fff;
   font-size: 102px;
   font-weight: 900;
-  margin: 30px 0px;
+  margin: 30px 0;
   text-shadow: 2px 10px rgba(0, 0, 0, 0.6);
 }
 
@@ -78,18 +85,7 @@ main {
   font-weight: 500;
 }
 
-.current .weather {
-  color: #fff;
-  font-size: 32px;
-  font-weight: 700;
-  font-style: italic;
-  margin-bottom: 15px;
-  text-shadow: 0px 3px rgba(0, 0, 0, 0.4);
-}
-
 .current .hi-low {
-  color: #fff;
   font-size: 24px;
   font-weight: 500;
-  text-shadow: 0px 4px rgba(0, 0, 0, 0.4);
 }
