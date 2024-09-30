@@ -5,15 +5,12 @@ const api = {
 
 const searchbox = document.querySelector('.search-box');
 searchbox.addEventListener('keypress', evt => {
-  if (evt.keyCode === 13) getResults(searchbox.value);
+  if (evt.key === 'Enter') getResults(searchbox.value);
 });
 
 window.onload = () => {
   getResults("Karachi");
-  fetchCityWeather('Lahore');
-  fetchCityWeather('Islamabad');
-  fetchCityWeather('Multan');
-  fetchCityWeather('Peshawar');
+  ['Lahore', 'Islamabad', 'Multan', 'Peshawar'].forEach(fetchCityWeather);
 };
 
 function getResults(query) {
@@ -27,27 +24,19 @@ function displayResults(weather) {
   const city = document.querySelector('.location .city');
   city.innerText = `${weather.name}, ${weather.sys.country}`;
 
-  const now = new Date();
-  document.querySelector('.location .date').innerText = dateBuilder(now);
-
+  document.querySelector('.location .date').innerText = dateBuilder(new Date());
   const currentTemp = Math.round(weather.main.temp);
-  document.querySelector('.current .temp').innerHTML = `${!isNaN(currentTemp) ? currentTemp : 'N/A'}<span>°c</span>`;
-  
+  document.querySelector('.current .temp').innerHTML = `${currentTemp || 'N/A'}<span>°c</span>`;
   document.querySelector('.current .weather').innerText = weather.weather[0]?.main || 'No weather data';
-
-  const minTemp = Math.round(weather.main.temp_min);
-  const maxTemp = Math.round(weather.main.temp_max);
-  document.querySelector('.hi-low').innerText = `${!isNaN(minTemp) ? minTemp : 'N/A'}°c / ${!isNaN(maxTemp) ? maxTemp : 'N/A'}°c`;
+  document.querySelector('.hi-low').innerText = `${Math.round(weather.main.temp_min) || 'N/A'}°c / ${Math.round(weather.main.temp_max) || 'N/A'}°c`;
 }
 
-// Fetch weather for specific city
 function fetchCityWeather(cityName) {
   fetch(`${api.base}weather?q=${cityName}&units=metric&APPID=${api.key}`)
     .then(response => response.json())
     .then(data => {
       const cityCard = document.getElementById(cityName.toLowerCase());
-      const temp = Math.round(data.main.temp);
-      cityCard.querySelector('.temp').innerText = `${temp}°c`;
+      cityCard.querySelector('.temp').innerText = `${Math.round(data.main.temp)}°c`;
       cityCard.querySelector('.weather').innerText = data.weather[0]?.main || 'No data';
     })
     .catch(() => alert(`Failed to retrieve weather data for ${cityName}.`));
