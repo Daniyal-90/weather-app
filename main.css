@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: url('My Backgroud.jpg') top center / cover no-repeat;
+  background: url("My\ Backgroud.jpg") top center / cover no-repeat;
 }
 
 .app-wrap {
@@ -82,3 +82,4 @@ main {
   transform: translateY(-5px); 
   box-shadow: 0 8px 20px rgba(0, 128, 255, 0.8); 
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(0, 128, 255, 0.7)); 
+}
