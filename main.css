@@ -80,6 +80,5 @@ main {
 
 .city-card:hover {
   transform: translateY(-5px); 
-  box-shadow: 0 8px 20px rgba(0, 128, 255, 0.8); /* Brighter shadow on hover */
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(0, 128, 255, 0.7)); /* Even brighter on hover */
-}
+  box-shadow: 0 8px 20px rgba(0, 128, 255, 0.8); 
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(0, 128, 255, 0.7)); 
